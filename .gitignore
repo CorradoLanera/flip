@@ -9,3 +9,7 @@ flip.Rproj
 *~
 .Rproj.user
 
+# keep .cpp or .h files within /src while using Rcpp
+src/*.o
+src/*.so
+src/*.dll
