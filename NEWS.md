@@ -1,4 +1,5 @@
-# flip 2.4.3.0021
+
+# flip 2.4.4.0001
 
 * Added name to `flip.object-class`
 * Updated ` @useDynLib flip, .registration = TRUE` in `flip-object.R`

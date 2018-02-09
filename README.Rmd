@@ -1,73 +1,82 @@
 ---
-output:
-  md_document:
-    variant: markdown_github
+output: github_document
 ---
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-```{r, echo = FALSE}
+```{r setup, include = FALSE}
 knitr::opts_chunk$set(
-  collapse = TRUE,
-  comment = "#>",
-  fig.path = "README-"
+  collapse  = TRUE,
+  comment   = "#>",
+  fig.path  = "man/figures/README-",
+  out.width = "100%",
+  warning   = FALSE,
+  message   = FALSE
 )
 ```
-# Welcome to the dev-version of the 
 
-#[library flip on CRAN](http://cran.r-project.org/web/packages/flip/index.html)
+# Welcome to the dev-version of the library
+[flip](http://cran.r-project.org/web/packages/flip/index.html) on CRAN
 
 
 * * *
 
-## Set up
+## Installation
+You can install the flip form CRAN
 
-To **install** this github version type (in R):
+```{r cran-installation, eval = FALSE}
+install.packages("flip")
+```
 
-    #if devtools is not installed yet: 
-    # install.packages("devtools") 
-    library(devtools)
-    install_github("livioivil/flip")
+You can install the dev-version of flip from GitHub with:
 
+```{r gh-installation, eval = FALSE}
+# install.packages("devtools")
+devtools::install_github("livioivil/flip")
+```
 
 * * *
 
 ## Some examples
 
-```{r,  message = FALSE}
+```{r load_pkg}
 library(flip)
 ```
 
-_A univariate analysis_
+### Univariate analysis
 
 Testing the symmetry around 0 in a one sample (i.e. equivalent to one sample t-test) 
-```{r, message = FALSE}
+```{r one_sample}
 set.seed(1)
-y=rnorm(10)+.5
-res=flip(y)
-summary(res)
+one_sample <- rnorm(10) + 0.5
+test_one_flip  <- flip(one_sample)
+summary(test_one_flip)
 ```
+
 and ploting
-```{r, message = FALSE}
-plot(res) # same ad hist(res)
+
+```{r one_plot}
+plot(test_one_flip) # NOTE: same ad hist(test_flip)
 ```
 
 
-_A multivarite analysis_
-```{r,message = FALSE}
+### Multivarite analysis
+```{r multi_sample}
 set.seed(1)
-df=data.frame(y1=rnorm(10)+.5,y2=rnorm(10))
-res=flip(~.,data=df)
-summary(res)
-plot(res) 
+multi_sample    <- data.frame(
+  var_one = rnorm(10) + 0.5,
+  var_two = rnorm(10)
+)
+test_multi_flip <- flip(~., data = multi_sample)
+summary(test_multi_flip)
+plot(test_multi_flip) 
 ```
 
 Which is different from ploting
 
-```{r, message = FALSE}
-##set the following if you get an error (mostly using Rstudio)
-#par(mar=c(1,1,1,1))
-hist(res)
+```{r multi_hist}
+# set `par(mar = c(1, 1, 1, 1))` if you get an error (mostly using Rstudio)
+hist(test_multi_flip)
 ```
 
 

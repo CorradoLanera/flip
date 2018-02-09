@@ -1,7 +1,7 @@
 Package: flip
 Type: Package
 Title: Multivariate Permutation Tests
-Version: 2.4.3.0021
+Version: 2.4.4.0001
 Date: 2015-10-08
 Author: Livio Finos, with contributions by Corrado Lanera, Florian Klinglmueller, Dario Basso,
     Aldo Solari, Lucia Benetazzo, Jelle Goeman and Marco Rinaldo.

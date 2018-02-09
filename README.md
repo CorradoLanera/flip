@@ -1,21 +1,27 @@
-<!-- README.md is generated from README.Rmd. Please edit that file -->
-Welcome to the dev-version of the
-=================================
 
-[library flip on CRAN](http://cran.r-project.org/web/packages/flip/index.html)
-==============================================================================
+<!-- README.md is generated from README.Rmd. Please edit that file -->
+Welcome to the dev-version of the library
+=========================================
+
+[flip](http://cran.r-project.org/web/packages/flip/index.html) on CRAN
 
 ------------------------------------------------------------------------
 
-Set up
-------
+Installation
+------------
 
-To **install** this github version type (in R):
+You can install the flip form CRAN
 
-    #if devtools is not installed yet: 
-    # install.packages("devtools") 
-    library(devtools)
-    install_github("livioivil/flip")
+``` r
+install.packages("flip")
+```
+
+You can install the dev-version of flip from GitHub with:
+
+``` r
+# install.packages("devtools")
+devtools::install_github("livioivil/flip")
+```
 
 ------------------------------------------------------------------------
 
@@ -26,43 +32,17 @@ Some examples
 library(flip)
 ```
 
-*A univariate analysis*
+### Univariate analysis
 
 Testing the symmetry around 0 in a one sample (i.e. equivalent to one sample t-test)
 
 ``` r
 set.seed(1)
-y=rnorm(10)+.5
-res=flip(y)
-#> Warning in rep(c(rep(0, (2^p/2^n)), rep(1, (2^p/2^n))), length = 2^p):
-#> partial argument match of 'length' to 'length.out'
-
-#> Warning in rep(c(rep(0, (2^p/2^n)), rep(1, (2^p/2^n))), length = 2^p):
-#> partial argument match of 'length' to 'length.out'
-
-#> Warning in rep(c(rep(0, (2^p/2^n)), rep(1, (2^p/2^n))), length = 2^p):
-#> partial argument match of 'length' to 'length.out'
-
-#> Warning in rep(c(rep(0, (2^p/2^n)), rep(1, (2^p/2^n))), length = 2^p):
-#> partial argument match of 'length' to 'length.out'
-
-#> Warning in rep(c(rep(0, (2^p/2^n)), rep(1, (2^p/2^n))), length = 2^p):
-#> partial argument match of 'length' to 'length.out'
-
-#> Warning in rep(c(rep(0, (2^p/2^n)), rep(1, (2^p/2^n))), length = 2^p):
-#> partial argument match of 'length' to 'length.out'
-
-#> Warning in rep(c(rep(0, (2^p/2^n)), rep(1, (2^p/2^n))), length = 2^p):
-#> partial argument match of 'length' to 'length.out'
-
-#> Warning in rep(c(rep(0, (2^p/2^n)), rep(1, (2^p/2^n))), length = 2^p):
-#> partial argument match of 'length' to 'length.out'
-
-#> Warning in rep(c(rep(0, (2^p/2^n)), rep(1, (2^p/2^n))), length = 2^p):
-#> partial argument match of 'length' to 'length.out'
-summary(res)
+one_sample <- rnorm(10) + 0.5
+test_one_flip  <- flip(one_sample)
+summary(test_one_flip)
 #>  Call:
-#>  flip(Y = y) 
+#>  flip(Y = one_sample) 
 #> 1023 permutations.
 #>   Test  Stat tail p-value sig.
 #> Y    t 2.561   ><  0.0293    *
@@ -71,69 +51,40 @@ summary(res)
 and ploting
 
 ``` r
-plot(res) # same ad hist(res)
+plot(test_one_flip) # NOTE: same ad hist(test_flip)
 ```
 
-![](README-unnamed-chunk-4-1.png)
+<img src="man/figures/README-one_plot-1.png" width="100%" />
 
-*A multivarite analysis*
+### Multivarite analysis
 
 ``` r
 set.seed(1)
-df=data.frame(y1=rnorm(10)+.5,y2=rnorm(10))
-res=flip(~.,data=df)
-#> Warning in rep(c(rep(0, (2^p/2^n)), rep(1, (2^p/2^n))), length = 2^p):
-#> partial argument match of 'length' to 'length.out'
-
-#> Warning in rep(c(rep(0, (2^p/2^n)), rep(1, (2^p/2^n))), length = 2^p):
-#> partial argument match of 'length' to 'length.out'
-
-#> Warning in rep(c(rep(0, (2^p/2^n)), rep(1, (2^p/2^n))), length = 2^p):
-#> partial argument match of 'length' to 'length.out'
-
-#> Warning in rep(c(rep(0, (2^p/2^n)), rep(1, (2^p/2^n))), length = 2^p):
-#> partial argument match of 'length' to 'length.out'
-
-#> Warning in rep(c(rep(0, (2^p/2^n)), rep(1, (2^p/2^n))), length = 2^p):
-#> partial argument match of 'length' to 'length.out'
-
-#> Warning in rep(c(rep(0, (2^p/2^n)), rep(1, (2^p/2^n))), length = 2^p):
-#> partial argument match of 'length' to 'length.out'
-
-#> Warning in rep(c(rep(0, (2^p/2^n)), rep(1, (2^p/2^n))), length = 2^p):
-#> partial argument match of 'length' to 'length.out'
-
-#> Warning in rep(c(rep(0, (2^p/2^n)), rep(1, (2^p/2^n))), length = 2^p):
-#> partial argument match of 'length' to 'length.out'
-
-#> Warning in rep(c(rep(0, (2^p/2^n)), rep(1, (2^p/2^n))), length = 2^p):
-#> partial argument match of 'length' to 'length.out'
-#> Warning in rep(tail, len = ncol(permT)): partial argument match of 'len' to
-#> 'length.out'
-
-#> Warning in rep(tail, len = ncol(permT)): partial argument match of 'len' to
-#> 'length.out'
-summary(res)
+multi_sample    <- data.frame(
+  var_one = rnorm(10) + 0.5,
+  var_two = rnorm(10)
+)
+test_multi_flip <- flip(~., data = multi_sample)
+summary(test_multi_flip)
 #>  Call:
-#>  flip(Y = ~., data = df) 
+#>  flip(Y = ~., data = multi_sample) 
 #> 1023 permutations.
-#>    Test   Stat tail p-value sig.
-#> y1    t 2.5612   ><  0.0293    *
-#> y2    t 0.7358   ><  0.4844
-plot(res) 
+#>         Test   Stat tail p-value sig.
+#> var_one    t 2.5612   ><  0.0293    *
+#> var_two    t 0.7358   ><  0.4844
+plot(test_multi_flip) 
 ```
 
-![](README-unnamed-chunk-5-1.png)
+<img src="man/figures/README-multi_sample-1.png" width="100%" />
 
 Which is different from ploting
 
 ``` r
-##set the following if you get an error (mostly using Rstudio)
-#par(mar=c(1,1,1,1))
-hist(res)
+# set `par(mar = c(1, 1, 1, 1))` if you get an error (mostly using Rstudio)
+hist(test_multi_flip)
 ```
 
-![](README-unnamed-chunk-6-1.png)
+<img src="man/figures/README-multi_hist-1.png" width="100%" />
 
 ------------------------------------------------------------------------
 
